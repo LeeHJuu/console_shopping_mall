@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'main.dart';
-import 'model/menu_index.dart';
+import 'model/menu.dart';
 import 'model/product.dart';
 
 // 메뉴 목록을 출력하는 메서드
