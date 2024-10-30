@@ -5,9 +5,10 @@ import 'dart:io';
 import 'model/menu_index.dart';
 import 'model/product.dart';
 
-// 장바구니 초기화
+// 장바구니 선언 및 초기화
 Map<String, int> cart = {};
 
+// 메인함수
 void main(List<String> args) {
   while (true) {
     showMenus();
@@ -82,20 +83,24 @@ void addToCart() {
     print("상품 개수를 입력해주세요.");
     var countInput = stdin.readLineSync();
 
-    var countNum = int.parse(countInput!); // 숫자가 아닌 경우의 예외처리 할 것.
+    try {
+      var countNum = int.parse(countInput!); // 숫자가 아닌 경우의 예외처리 할 것.
 
-    if (countNum > 0) {
-      // 동일 상품 선택시 수량 추가.
-      if (cart.keys.contains(productInput)) {
-        var itemCount = cart[productInput];
-        cart[productInput!] = (itemCount! + countNum);
+      if (countNum > 0) {
+        // 동일 상품 선택시 수량 추가.
+        if (cart.keys.contains(productInput)) {
+          var itemCount = cart[productInput];
+          cart[productInput!] = (itemCount! + countNum);
+        } else {
+          cart[productInput!] = countNum;
+        }
+
+        print("장바구니에 상품이 담겼어요!");
       } else {
-        cart[productInput!] = countNum;
+        print("0개보다 많은 개수의 상품만 담을 수 있어요!");
       }
-
-      print("장바구니에 상품이 담겼어요!");
-    } else {
-      print("0개보다 많은 개수의 상품만 담을 수 있어요!");
+    } catch (e) {
+      print("입력값이 올바르지 않습니다.");
     }
   } else {
     print("없는 상품입니다.");
