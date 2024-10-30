@@ -11,4 +11,5 @@ List<MenuIndex> menuIndex = [
   MenuIndex(2, '장바구니에 담기'),
   MenuIndex(3, '장바구니에 담긴 상품의 총 가격 보기'),
   MenuIndex(4, '프로그램 종료'),
+  MenuIndex(6, '장바구니 초기화'),
 ];
