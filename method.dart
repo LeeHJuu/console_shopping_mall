@@ -66,7 +66,7 @@ void addToCart() {
         print("0개보다 많은 개수의 상품만 담을 수 있어요!");
       }
     } catch (e) {
-      print("입력값이 올바르지 않습니다.");
+      print("입력값이 올바르지 않습니다. 상품 갯수는 숫자만 입력 가능합니다.");
     }
   } else {
     print("없는 상품입니다.");
@@ -128,20 +128,21 @@ void showCartItems() {
   }
 }
 
-
-void tryDiscount(){
+void tryDiscount() {
   print("흥정을 시도하겠습니까? 가위바위보 해서 이기면 1000원이 할인됩니다.\n[1]예  [2]아니오");
 
   var userInput = stdin.readLineSync();
 
-  try {
-    var intInput = int.parse(userInput!);
-
-    if(intInput == 1){
+  switch (userInput) {
+    case '1':
       rockScissorsPaper();
-    }
-  } catch (e) {
-    
+      break;
+    case '2':
+      print("흥정을 하지 않습니다.");
+      break;
+    default:
+      print("잘못된 입력입니다. 흥정을 하지 않습니다.");
+      break;
   }
 }
 
@@ -149,8 +150,8 @@ void tryDiscount(){
 void rockScissorsPaper() {
   print("가위바위보를 시작합니다. 원하는 숫자를 입력해주세요.\n[1]가위  [2]바위  [3]보");
 
-  int randomIndex = Random(3) as int;
-  var rockScissorsPaper = ["가위", "바위", "보"];
+  int randomIndex = Random().nextInt(3);
+  List<String> rockScissorsPaper = ["가위", "바위", "보"];
 
   var userInput = stdin.readLineSync();
 
@@ -176,6 +177,6 @@ void rockScissorsPaper() {
 }
 
 // 할인액 추가하는 메서드
-void getDiscount(){
+void getDiscount() {
   discount += 1000;
 }
