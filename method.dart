@@ -58,6 +58,9 @@ void addToCart() {
           cart[productInput!] = countNum;
         }
 
+        // 흥정 시도하는 메서드
+        tryDiscount();
+
         print("장바구니에 상품이 담겼어요!");
       } else {
         print("0개보다 많은 개수의 상품만 담을 수 있어요!");
@@ -122,6 +125,23 @@ void showCartItems() {
     var totalPrice = calcTotalPrice();
 
     print("$cartItems가 담겨있네요. 총 $totalPrice원 입니다!");
+  }
+}
+
+
+void tryDiscount(){
+  print("흥정을 시도하겠습니까? 가위바위보 해서 이기면 1000원이 할인됩니다.\n[1]예  [2]아니오");
+
+  var userInput = stdin.readLineSync();
+
+  try {
+    var intInput = int.parse(userInput!);
+
+    if(intInput == 1){
+      rockScissorsPaper();
+    }
+  } catch (e) {
+    
   }
 }
 
