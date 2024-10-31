@@ -4,6 +4,8 @@ import 'method.dart';
 
 // 장바구니 선언 및 초기화
 Map<String, int> cart = {};
+int discount = 0;
+
 
 // 메인함수
 void main(List<String> args) {

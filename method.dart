@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'main.dart';
 import 'model/menu.dart';
@@ -87,7 +88,7 @@ int calcTotalPrice() {
     totalPrice += (products[name]! * count);
   }
 
-  return totalPrice;
+  return totalPrice - discount;
 }
 
 // 프로그램 종료하는 메서드
@@ -122,4 +123,39 @@ void showCartItems() {
 
     print("$cartItems가 담겨있네요. 총 $totalPrice원 입니다!");
   }
+}
+
+// 가위바위보 하는 메소드
+void rockScissorsPaper() {
+  print("가위바위보를 시작합니다. 원하는 숫자를 입력해주세요.\n[1]가위  [2]바위  [3]보");
+
+  int randomIndex = Random(3) as int;
+  var rockScissorsPaper = ["가위", "바위", "보"];
+
+  var userInput = stdin.readLineSync();
+
+  try {
+    var userInt = int.parse(userInput!) - 1;
+
+    print(
+        "you: ${rockScissorsPaper[userInt]}, computer: ${rockScissorsPaper[randomIndex]}");
+
+    if (userInt == randomIndex) {
+      print("비겼습니다. 흥정에 실패합니다.");
+    } else if ((userInt == 0 && randomIndex == 2) ||
+        (userInt == 1 && randomIndex == 0) ||
+        (userInt == 2 && randomIndex == 1)) {
+      print("이겼습니다! 흥정에 성공합니다.");
+      getDiscount();
+    } else {
+      print("졌습니다. 흥정에 실패합니다.");
+    }
+  } catch (e) {
+    print("잘못된 입력입니다. 흥정에 실패합니다.");
+  }
+}
+
+// 할인액 추가하는 메서드
+void getDiscount(){
+  discount += 1000;
 }
